@@ -7,7 +7,7 @@ import FloatButtoCSV from "../components/FloatButtoCSV";
 import { Edit, Trash } from "react-feather";
 import ModalConfirmDeleteTransaction from "../components/ModalConfirmDeleteTransaction";
 import BoxMessage from "../components/BoxMessage";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 export default function TransactionsPage() {
   const navigate = useNavigate();

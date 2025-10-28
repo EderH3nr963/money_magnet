@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 export default function ModalConfirmDeleteTransaction({ onCancel, onConfirm }: { onCancel: () => void; onConfirm: () => void }) {
 
   return (
