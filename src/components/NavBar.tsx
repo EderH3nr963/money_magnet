@@ -19,7 +19,7 @@ export default function NavBar() {
   const avatarUrl = (user?.user_metadata?.avatar_url as string | undefined) ?? undefined
 
   return (
-    <nav className="w-full border-b border-gray-200 bg-white/80 backdrop-blur">
+    <nav className="w-full border-b border-gray-200 bg-white/80 backdrop-blur shadow-md">
       <div className="mx-auto max-w-[100vw] px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 items-center justify-between">
           {/* Left: Logo */}

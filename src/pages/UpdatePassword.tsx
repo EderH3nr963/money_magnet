@@ -23,9 +23,7 @@ export default function UpdatePassword() {
     e.preventDefault()
     setError(null)
     setSuccess(null)
-
-    console.log(password, confirmPassword)
-
+    
     if (password !== confirmPassword) {
       setError("As senhas não coincidem.")
       return

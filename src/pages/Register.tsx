@@ -1,42 +1,50 @@
 import { useState } from "react";
 import { signUp } from "../services/authServices";
 import BoxMessage from "../components/BoxMessage";
+import { useNavigate } from "react-router";
 
 export default function Register() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     name: '',
     email: '',
     password: '',
     confirmPass: ''
   });
-  const [error, setError] = useState<string | undefined>();
+  const [message, setMessage] = useState<string | undefined>(); 
+  const [isError, setIsError] = useState<boolean>(true);
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit() {
-    setError(undefined);
+    setMessage(undefined);
 
     if (form.password !== form.confirmPass) {
-      setError('As senhas não coincidem');
+      setMessage('As senhas não coincidem');
       return;
     }
 
     if (!form.email || !form.password || !form.name) {
-      setError('Preencha todos os campos');
+      setMessage('Preencha todos os campos');
       return;
     }
 
     setLoading(true);
     try {
-      const data = await signUp({
+      await signUp({
         name: form.name,
         email: form.email,
         password: form.password
       });
-      console.log(data);
+
+      setIsError(false);
+      setMessage('Conta criada com sucesso!');
+
+      setTimeout(() => {
+        navigate('/login');
+      }, 3000);
     } catch (err: any) {
       const message = err?.error_description || err?.message || 'Erro desconhecido';
-      console.log(message);
-      setError(message);
+      setMessage(message);
     } finally {
       setLoading(false);
     }
@@ -133,8 +141,8 @@ export default function Register() {
           </p>
         </form>
       </section>
-      {error &&
-        <BoxMessage error={true} message={error} />
+      {message &&
+        <BoxMessage error={isError} message={message} />
       }
     </main>
   );

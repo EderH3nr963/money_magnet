@@ -25,7 +25,6 @@ export default function HomePage() {
         const data = await getTransactionCurrentYear();
         setTransaction(data);
       } catch (error) {
-        console.error("Erro ao buscar transações:", error);
       }
     }
     fetchTransaction();

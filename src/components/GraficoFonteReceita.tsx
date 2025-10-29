@@ -4,8 +4,6 @@ import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recha
 export default function GraficoFonteReceita({ transaction }: { transaction: Transaction[] }) {
   const data = calculateRevenueDistribution(transaction || []);
 
-  console.log(data)
-
   return (
     <div className="w-full lg:w-1/2">
       <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4">Fontes de Receita</h3>

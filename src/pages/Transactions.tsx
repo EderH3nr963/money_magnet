@@ -63,7 +63,6 @@ export default function TransactionsPage() {
         });
       }
     } catch (err) {
-      console.error("Erro ao carregar transações:", err);
       setMessage("Erro ao carregar transações.");
       setIsError(true);
       setTimeout(() => setMessage(""), 3000);

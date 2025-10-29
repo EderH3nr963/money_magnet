@@ -78,7 +78,6 @@ export default function ImportCSV() {
           return;
         }
 
-        console.log("Dados importados:", sheetData);
         setData(sheetData);
         setSuccess(`✅ Planilha carregada com sucesso! ${sheetData.length} transações encontradas.`);
         setError(null);
