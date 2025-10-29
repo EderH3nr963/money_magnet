@@ -72,6 +72,36 @@ export async function getTransactionCurrentYear(): Promise<Transaction[]> {
   return data.map(mapTransaction);
 }
 
+export async function getTransactionByYear(year: number): Promise<Transaction[]> {
+
+  const { data, error } = await supabase
+    .from("transactions")
+    .select(
+      `
+        id,
+        description,
+        amount,
+        date,
+        status,
+        payment_method,
+        categories:fk_category (
+          id,
+          name,
+          color,
+          type
+        )
+      `
+    )
+    .gte("date", `${year}-01-01`)
+    .lte("date", `${year}-12-31`)
+    .order("date", { ascending: false });
+
+  if (error) throw error;
+  if (!data) return [];
+
+  return data.map(mapTransaction);
+}
+
 /**
  * Retorna as 20 transações mais recentes (paginadas)
  */

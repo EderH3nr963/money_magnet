@@ -1,20 +1,19 @@
 // Componentes
 import NavBar from "../components/NavBar";
 
-// Graficos
-import { Line, LineChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
-
 // Icons 
 import { TrendingUp, TrendingDown } from "react-feather";
 import Footer from "../components/Fotter";
 
 // Auth
 import { useAuth } from "../context/AuthContext";
-import { calculateMonthlyData, calculateRevenueDistribution, calculateCurrentMetrics } from "../services/analytics";
+import { calculateCurrentMetrics } from "../services/analytics";
 import { useEffect, useState } from "react";
 import { getTransactionCurrentYear } from "../services/transactionService";
 import type { Transaction } from "../types/transactions";
 import FloatButtoCSV from "../components/FloatButtoCSV";
+import GraficoFluxoFinanceiro from "../components/GraficoFluxoFinanceiro";
+import GraficoFonteReceita from "../components/GraficoFonteReceita";
 
 export default function HomePage() {
   const { user } = useAuth();
@@ -47,8 +46,6 @@ export default function HomePage() {
 
 
   // Dados calculados dinamicamente
-  const data = calculateMonthlyData(transaction || []);
-  const pieData = calculateRevenueDistribution(transaction || []);
   const metrics = calculateCurrentMetrics(transaction || []);
 
 
@@ -128,88 +125,12 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="w-full lg:w-1/2 mt-6 lg:mt-0">
-            <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4">Fluxo Financeiro</h3>
-            <div className="w-full h-[250px] md:h-[300px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
-                  <XAxis dataKey="name" stroke="#666" />
-                  <YAxis stroke="#666" />
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: '#1f2937',
-                      border: 'none',
-                      borderRadius: '8px',
-                      color: '#fff'
-                    }}
-                    itemStyle={{ color: '#fff' }}
-                  />
-                  <Legend />
-                  <Line
-                    type="linear"
-                    dataKey="receita"
-                    stroke="#8b5cf6"
-                    strokeWidth={2}
-                    dot={{ r: 4 }}
-                    name="Receita"
-                  />
-                  <Line
-                    type="linear"
-                    dataKey="despesa"
-                    stroke="#3b82f6"
-                    strokeWidth={2}
-                    dot={{ r: 4 }}
-                    name="Despesa"
-                  />
-                  <Line
-                    type="linear"
-                    dataKey="lucro"
-                    stroke="#10b981"
-                    strokeWidth={2}
-                    dot={{ r: 4 }}
-                    name="Lucro"
-                  />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
+
+          <GraficoFluxoFinanceiro />
         </section>
 
         <section className="flex flex-col lg:flex-row w-full justify-center items-start gap-6 mt-20 mb-20">
-          <div className="w-full lg:w-1/2">
-            <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4">Fontes de Receita</h3>
-            <div className="w-full h-[300px] md:h-[350px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={pieData}
-                    dataKey="value"
-                    nameKey="name"
-                    cx="50%"
-                    cy="50%"
-                    outerRadius={110}
-                    fill="#8884d8"
-                    label
-                  >
-                    <Cell fill="#8b5cf6" />
-                    <Cell fill="#3b82f6" />
-                    <Cell fill="#10b981" />
-                    <Cell fill="#f59e0b" />
-                  </Pie>
-                  <Tooltip
-                    contentStyle={{
-                      border: 'none',
-                      borderRadius: '8px',
-                      padding: '10px',
-                      outline: 0
-                    }}
-                  />
-                  <Legend verticalAlign="bottom" height={36} iconSize={16} />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
+          <GraficoFonteReceita transaction={transaction} />
 
           <div className="w-full lg:w-1/2 mt-6 lg:mt-0">
             <div className="flex justify-between mb-4">
