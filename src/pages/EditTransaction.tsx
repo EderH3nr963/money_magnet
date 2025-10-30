@@ -13,7 +13,6 @@ export default function EditTransaction() {
   const [transaction, setTransaction] = useState<Transaction | null>(null);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
-
   const [message, setMessage] = useState("");
   const [isError, setIsError] = useState(false);
 
@@ -29,15 +28,15 @@ export default function EditTransaction() {
         const dataCategories = await getCategories();
         if (!dataTransaction) {
           setMessage("Transação não encontrada.");
-          setIsError(true)
+          setIsError(true);
           setTimeout(() => navigate("/transactions", { replace: true }), 2000);
           return;
         }
         setTransaction(dataTransaction);
         setCategories(dataCategories);
-      } catch (err) {
+      } catch {
         setMessage("Erro ao carregar a transação.");
-        setIsError(true)
+        setIsError(true);
         setTimeout(() => navigate("/transactions", { replace: true }), 2000);
       } finally {
         setLoading(false);
@@ -49,7 +48,7 @@ export default function EditTransaction() {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen text-gray-600">
+      <div className="flex justify-center items-center h-screen text-gray-700 dark:text-gray-300 bg-linear-to-br from-purple-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
         Carregando transação...
       </div>
     );
@@ -58,9 +57,9 @@ export default function EditTransaction() {
   if (!transaction) return null;
 
   const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     setIsError(false);
     setMessage("");
-    e.preventDefault();
 
     try {
       const transactionEdit: EditTransaction = {
@@ -72,32 +71,29 @@ export default function EditTransaction() {
       };
 
       await editTransaction(Number(id), transactionEdit);
-
       setMessage("Transação editada com sucesso!");
       setIsError(false);
-
       setTimeout(() => navigate("/transactions", { replace: true }), 2000);
-    } catch (e) {
+    } catch {
       setMessage("Erro ao editar a transação.");
       setIsError(true);
     }
-
   };
 
   return (
     <>
       <NavBar />
-      <main className="min-h-screen flex justify-center items-center p-6 bg-linear-to-br from-purple-50 to-indigo-100">
-        <section className="w-full max-w-2xl bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
-          <h1 className="text-2xl font-bold text-gray-800">Editar Transação</h1>
-          <p className="mt-1 text-sm text-gray-600">
+      <main className="min-h-screen flex justify-center items-center p-6 bg-linear-to-br from-purple-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
+        <section className="w-full max-w-2xl bg-white dark:bg-gray-900 dark:text-gray-100 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 transition-all duration-300">
+          <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Editar Transação</h1>
+          <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
             Atualize as informações abaixo e salve as alterações.
           </p>
 
           <form onSubmit={handleSubmit} className="mt-6 space-y-5">
             {/* Descrição */}
             <div>
-              <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="description" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 Descrição
               </label>
               <input
@@ -105,7 +101,7 @@ export default function EditTransaction() {
                 type="text"
                 value={transaction.description}
                 onChange={(e) => setTransaction({ ...transaction, description: e.target.value })}
-                className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none"
+                className="mt-1 w-full rounded-md border border-gray-300 dark:border-gray-600 bg-transparent px-3 py-2 text-sm text-gray-900 dark:text-gray-100 focus:border-purple-500 focus:ring-purple-500 focus:outline-none duration-200"
                 placeholder="Ex: Almoço com cliente"
               />
             </div>
@@ -113,7 +109,7 @@ export default function EditTransaction() {
             {/* Valor e Data */}
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="flex-1">
-                <label htmlFor="amount" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="amount" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Valor (R$)
                 </label>
                 <input
@@ -122,11 +118,11 @@ export default function EditTransaction() {
                   step="0.01"
                   value={transaction.amount}
                   onChange={(e) => setTransaction({ ...transaction, amount: parseFloat(e.target.value) })}
-                  className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none"
+                  className="mt-1 w-full rounded-md border border-gray-300 dark:border-gray-600 bg-transparent px-3 py-2 text-sm text-gray-900 dark:text-gray-100 focus:border-purple-500 focus:ring-purple-500 focus:outline-none duration-200"
                 />
               </div>
               <div className="flex-1">
-                <label htmlFor="date" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="date" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Data
                 </label>
                 <input
@@ -134,57 +130,50 @@ export default function EditTransaction() {
                   type="date"
                   value={transaction.date.split("T")[0]}
                   onChange={(e) => setTransaction({ ...transaction, date: e.target.value })}
-                  className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none"
+                  className="mt-1 w-full rounded-md border border-gray-300 dark:border-gray-600 bg-transparent px-3 py-2 text-sm text-gray-900 dark:text-gray-100 focus:border-purple-500 focus:ring-purple-500 focus:outline-none duration-200"
                 />
               </div>
             </div>
 
             {/* Categoria */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <div className="flex-1">
-                <label htmlFor="category" className="block text-sm font-medium text-gray-700">
-                  Categoria
-                </label>
-                <select
-                  id="category"
-                  value={transaction.category?.name || ""}
-                  onChange={(e) =>
-                    setTransaction({
-                      ...transaction,
-                      category_id: Number(e.target.value),
-                    })
-                  }
-                  className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none"
-                >
-                  {categories.map((cat) => (
-                    <option key={cat.id} value={cat.id}>
-                      {cat.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
+            <div>
+              <label htmlFor="category" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                Categoria
+              </label>
+              <select
+                id="category"
+                value={transaction.category_id || ""}
+                onChange={(e) => setTransaction({ ...transaction, category_id: Number(e.target.value) })}
+                className="mt-1 w-full rounded-md border border-gray-300 dark:border-gray-600 bg-transparent px-3 py-2 text-sm text-gray-900 dark:text-gray-100 focus:border-purple-500 focus:ring-purple-500 focus:outline-none duration-200"
+              >
+                {categories.map((cat) => (
+                  <option key={cat.id} value={cat.id} className="bg-white dark:bg-gray-900">
+                    {cat.name}
+                  </option>
+                ))}
+              </select>
             </div>
 
             {/* Status e Método de Pagamento */}
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="flex-1">
-                <label htmlFor="status" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="status" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Status
                 </label>
                 <select
                   id="status"
                   value={transaction.status}
                   onChange={(e) => setTransaction({ ...transaction, status: e.target.value })}
-                  className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm bg-white focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none"
+                  className="mt-1 w-full rounded-md border border-gray-300 dark:border-gray-600 bg-transparent px-3 py-2 text-sm text-gray-900 dark:text-gray-100 focus:border-purple-500 focus:ring-purple-500 focus:outline-none duration-200"
                 >
-                  <option value="pendente">Pendente</option>
-                  <option value="pago">Pago</option>
-                  <option value="cancelado">Cancelado</option>
+                  <option value="pendente" className="bg-white dark:bg-gray-900">Pendente</option>
+                  <option value="pago" className="bg-white dark:bg-gray-900">Pago</option>
+                  <option value="cancelado" className="bg-white dark:bg-gray-900">Cancelado</option>
                 </select>
               </div>
 
               <div className="flex-1">
-                <label htmlFor="payment_method" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="payment_method" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Método de Pagamento
                 </label>
                 <input
@@ -192,7 +181,7 @@ export default function EditTransaction() {
                   type="text"
                   value={transaction.payment_method ?? ""}
                   onChange={(e) => setTransaction({ ...transaction, payment_method: e.target.value })}
-                  className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none"
+                  className="mt-1 w-full rounded-md border border-gray-300 dark:border-gray-600 bg-transparent px-3 py-2 text-sm text-gray-900 dark:text-gray-100 focus:border-purple-500 focus:ring-purple-500 focus:outline-none duration-200"
                   placeholder="Ex: Cartão, Pix, Dinheiro"
                 />
               </div>
@@ -203,26 +192,24 @@ export default function EditTransaction() {
               <button
                 type="button"
                 onClick={() => navigate("/transactions")}
-                className="rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-red-600 hover:text-white hover:scale-105 hover:cursor-pointer transition duration-200"
+                className="rounded-md border border-gray-300 hover:cursor-pointer dark:border-gray-600 dark:hover:border-red-600 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-red-600 hover:text-white hover:scale-105 transition duration-200"
               >
                 Cancelar
               </button>
               <button
                 type="submit"
                 disabled={loading}
-                className={`rounded-md bg-purple-600 px-4 py-2 text-sm font-medium text-white hover:scale-105 hover:bg-purple-700 transition hover:cursor-pointer duration-200 ${loading ? "opacity-70 cursor-not-allowed" : ""
-                  }`}
+                className={`rounded-md bg-purple-600 px-4 py-2 hover:cursor-pointer text-sm font-medium text-white hover:scale-105 hover:bg-purple-700 transition duration-200 ${
+                  loading ? "opacity-70 cursor-not-allowed" : ""
+                }`}
               >
                 {loading ? "Salvando..." : "Salvar alterações"}
               </button>
             </div>
           </form>
         </section>
-        {
-          message && (
-            <BoxMessage error={isError} message={message} />
-          )
-        }
+
+        {message && <BoxMessage error={isError} message={message} />}
       </main>
       <Footer />
     </>

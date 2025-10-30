@@ -24,9 +24,9 @@ export default function DropdownTimerPeriod({ timePeriod, setTimePeriod }: { tim
         {
           <>
           {years.map((year) => (
-            <a href="#" onClick={(e) => { e.preventDefault(); setTimePeriod(year); setShowDropdown(false); }} className="block px-5 py-2 text-sm hover:bg-purple-700 hover:text-white dark:text-gray-200 rounded mx-1 my-1 duration-200">
+            <button key={year} onClick={(e) => { e.preventDefault(); setTimePeriod(year); setShowDropdown(false); }} className="block px-5 py-2 text-sm hover:bg-purple-700 hover:text-white dark:text-gray-200 rounded mx-1 my-1 duration-200">
               {year}
-            </a>
+            </button>
           ))}
           </>
         }

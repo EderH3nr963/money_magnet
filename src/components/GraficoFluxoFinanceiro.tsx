@@ -37,7 +37,6 @@ export default function GraficoFluxoFinanceiro() {
   const tooltipBg = theme === "light" ? "#f9fafb" : "#1f2937"; // gray-50 / gray-800
   const tooltipText = theme === "light" ? "#1f2937" : "#f9fafb"; // gray-800 / gray-50
 
-
   return (
     <div className="w-full lg:w-1/2 mt-6 lg:mt-0">
       <div className="flex justify-between items-center">

@@ -17,7 +17,7 @@ function PrivateRoute({ children }: { children: ReactNode }) {
   const { user, loading } = useAuth();
 
   if (loading) {
-    return <div className="p-6 text-center text-gray-600">Carregando...</div>;
+    return <div className="p-6 text-center text-gray-600 dark:text-gray-300">Carregando...</div>;
   }
 
   if (!user) {

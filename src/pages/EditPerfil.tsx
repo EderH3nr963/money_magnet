@@ -44,33 +44,33 @@ export default function EditPerfil() {
   }
 
   return (
-    <main className="min-h-screen bg-linear-to-br from-purple-50 to-indigo-100 flex items-center justify-center px-4 py-12">
-      <section className="w-full max-w-md bg-white p-8 rounded-xl shadow-md border border-gray-200">
-        <h1 className="text-2xl font-bold text-gray-800">Editar Perfil</h1>
-        <p className="mt-1 text-sm text-gray-600">Atualize seu e-mail e nome de usuário.</p>
+    <main className="min-h-screen bg-linear-to-br from-purple-50 to-indigo-100 dark:from-gray-900 dark:to-gray-900 flex items-center justify-center px-4 py-12">
+      <section className="w-full max-w-md bg-white p-8 rounded-xl shadow-md border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+        <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Editar Perfil</h1>
+        <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">Atualize seu e-mail e nome de usuário.</p> 
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">E-mail</label>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">E-mail</label>
             <input
               id="email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               autoComplete="email"
-              className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-purple-500 focus:outline-none"
+              className="mt-1 w-full dark:text-white rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-purple-500 focus:outline-none duration-200"
             />
-            <p className="mt-1 text-xs text-gray-500">Alterar e-mail pode exigir confirmação via link.</p>
+            <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Alterar e-mail pode exigir confirmação via link.</p>
           </div>
 
           <div>
-            <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>
+            <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Username</label>
             <input
               id="username"
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-purple-500 focus:outline-none"
+              className="mt-1 w-full dark:text-white rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-purple-500 focus:outline-none duration-200"
               placeholder="Seu nome"
             />
           </div>
@@ -91,8 +91,8 @@ export default function EditPerfil() {
         )}
 
 
-        <div className="mt-6 text-center rounded-md hover:scale-105 hover:cursor-pointer duration-300 hover:bg-gray-200 py-2">
-          <a href="/settings" className="text-sm text-mint-600 hover:text-purple-600">Voltar para Configurações</a>
+        <div className="mt-6 text-center rounded-md hover:scale-105 hover:cursor-pointer duration-300 hover:bg-gray-200 dark:hover:bg-gray-900/60 py-2 group">
+          <a href="/settings" className="text-sm text-mint-600 group-hover:text-purple-600 dark:text-gray-300">Voltar para Configurações</a>
         </div>
       </section>
       {error && <BoxMessage error={true} message={error} />}

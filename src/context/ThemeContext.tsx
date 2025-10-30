@@ -7,13 +7,13 @@ const ThemeContext = createContext({
 
 
 export default function ThemeProvider({ children }: { children: ReactNode }) {
-  const themeCurrent = localStorage.getItem("theme") || "light"
+  const themeCurrent = localStorage.getItem("theme") || "dark"
 
   const [theme, setTheme] = useState(themeCurrent)
 
   function toggleTheme() {
     setTheme(theme === 'light' ? 'dark' : 'light');
-    localStorage.setItem("theme", theme);
+    localStorage.setItem("theme", theme === 'light' ? 'dark' : 'light');
   }
 
   return (

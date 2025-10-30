@@ -187,7 +187,7 @@ export default function TransactionsPage() {
           {/*  Loader / Scroll Infinito */}
           <div ref={loaderRef} className="py-6 flex items-center justify-center text-gray-500">
             {isLoading ? (
-              <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-gray-900"></div>
+              <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-gray-900 dark:border-gray-300"></div>
             ) : hasMoreTransactions ? "Deslize para carregar mais" : "Fim da lista"}
           </div>
         </section>
