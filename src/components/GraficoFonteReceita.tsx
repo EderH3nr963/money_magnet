@@ -6,7 +6,7 @@ export default function GraficoFonteReceita({ transaction }: { transaction: Tran
 
   return (
     <div className="w-full lg:w-1/2">
-      <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4">Fontes de Receita</h3>
+      <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 dark:text-gray-200">Fontes de Receita</h3>
       <div className="w-full h-[300px] md:h-[350px]">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>

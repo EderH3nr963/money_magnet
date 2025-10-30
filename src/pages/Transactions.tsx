@@ -122,30 +122,30 @@ export default function TransactionsPage() {
       <NavBar />
       <main className="min-h-screen flex flex-col items-center p-4">
         <section className="mt-10 mb-6 w-full max-w-5xl">
-          <h1 className="text-3xl font-semibold mb-4">Transações</h1>
+          <h1 className="text-3xl font-semibold mb-4 dark:text-gray-200">Transações</h1>
 
-          <div className="overflow-x-auto w-full bg-white rounded-xl shadow-sm">
+          <div className="overflow-x-auto w-full bg-white dark:bg-gray-800 rounded-xl shadow-sm">
             <table className="min-w-full">
-              <thead className="bg-gray-100 sticky top-0">
+              <thead className="bg-gray-100 dark:bg-gray-700 sticky top-0 rounded-xl">
                 <tr>
                   {["Data", "Descrição", "Categoria", "Valor", "Status", "Opções"].map(header => (
                     <th
                       key={header}
-                      className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
                     >
                       {header}
                     </th>
                   ))}
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-600 rounded-xl">
                 {transactions.map((tx, index) => (
-                  <tr key={`${tx.id ?? 'no-id'}-${index}`} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-4 py-3 text-sm text-gray-900">
+                  <tr key={`${tx.id ?? 'no-id'}-${index}`} className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                    <td className="px-4 py-3 text-sm text-gray-900 dark:text-gray-200">
                       {new Date(tx.date).toLocaleDateString("pt-BR")}
                     </td>
-                    <td className="px-4 py-3 text-sm text-gray-900">{tx.description}</td>
-                    <td className="px-4 py-3 text-sm text-gray-600">{tx.category?.name || "Nenhuma"}</td>
+                    <td className="px-4 py-3 text-sm text-gray-900 dark:text-gray-200">{tx.description}</td>
+                    <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-200">{tx.category?.name || "Nenhuma"}</td>
                     <td className={`px-4 py-3 text-sm font-semibold ${tx.category?.type === "receita" ? "text-green-600" : "text-red-600"}`}>
                       {tx.category?.type === "despesa" ? `-${formatCurrency(tx.amount)}` : formatCurrency(tx.amount)}
                     </td>

@@ -19,7 +19,7 @@ export default function NavBar() {
   const avatarUrl = (user?.user_metadata?.avatar_url as string | undefined) ?? undefined
 
   return (
-    <nav className="w-full border-b border-gray-200 bg-white/80 backdrop-blur shadow-md">
+    <nav className="w-full border-b border-gray-200 bg-white/80 backdrop-blur shadow-md dark:bg-gray-900 dark:border-gray-700">
       <div className="mx-auto max-w-[100vw] px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 items-center justify-between">
           {/* Left: Logo */}
@@ -30,20 +30,20 @@ export default function NavBar() {
           {/* Right: Desktop links + Avatar */}
           <div className="hidden sm:flex sm:items-center sm:gap-6">
             <ul className="flex space-x-4">
-              <li className="hover:bg-gray-100 px-3 py-1 rounded-lg hover:cursor-pointer group">
+              <li className="hover:bg-gray-100 px-3 py-1 rounded-lg hover:cursor-pointer group dark:hover:bg-gray-800 dark:text-gray-100">
                 <a href="/" className="duration-300 text-mint-500 group-hover:text-purple-500">Dashboard</a>
               </li>
-              <li className="hover:bg-gray-100 px-3 py-1 rounded-lg hover:cursor-pointer group">
-                <a href="/transactions" className="duration-300 text-mint-500 group-hover:text-purple-500">Transações</a>
+              <li className="hover:bg-gray-100 px-3 py-1 rounded-lg hover:cursor-pointer group dark:hover:bg-gray-800 dark:text-gray-100">
+                <a href="/transactions" className="duration-300 text-mint-500 group-hover:text-purple-500 ">Transações</a>
               </li>
-              <li className="flex items-center hover:bg-gray-100 px-3 py-1 rounded-lg hover:cursor-pointer group">
+              <li className="flex items-center hover:bg-gray-100 px-3 py-1 rounded-lg hover:cursor-pointer group dark:hover:bg-gray-800 dark:text-gray-100">
                 <a href="/settings">
-                  <Settings className=" text-gray-600 group-hover:text-purple-500 hover:cursor-pointer duration-300" />
+                  <Settings className=" text-gray-600 group-hover:text-purple-500 hover:cursor-pointer duration-300 dark:text-gray-200" />
                 </a>
               </li>
-              <li className="flex items-center hover:bg-red-100 px-3 py-1 rounded-lg hover:cursor-pointer group">
+              <li className="flex items-center hover:bg-red-100 px-3 py-1 rounded-lg hover:cursor-pointer group dark:hover:bg-gray-800 dark:text-gray-100">
                 <div onClick={() => signOut()}>
-                  <LogOut className=" text-gray-600 group-hover:text-red-500 hover:cursor-pointer duration-300" />
+                  <LogOut className=" text-gray-600 group-hover:text-red-500 hover:cursor-pointer duration-300 dark:text-gray-200" />
                 </div>
               </li>
             </ul>
