@@ -20,7 +20,7 @@ export default function Login() {
 
     setLoading(true)
     try {
-      await signIn(form.email, form.password)
+      await signIn(form.email, form.password,)
       navigate("/", { replace: true })
     } catch (err: any) {
       const message = err?.error_description || err?.message || "Credenciais inválidas"
@@ -85,13 +85,6 @@ export default function Login() {
           </div>
 
           <div className="flex items-center justify-between">
-            <label className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
-              <input
-                type="checkbox"
-                className="rounded border-gray-300 dark:border-gray-600 text-purple-600 focus:ring-purple-500 dark:bg-transparent"  
-              />
-              Lembrar-me
-            </label>
             <a
               href="/forgot-password"
               className="text-sm text-purple-600 hover:text-purple-500 hover:underline"
