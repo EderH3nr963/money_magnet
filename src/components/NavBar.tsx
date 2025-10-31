@@ -82,7 +82,7 @@ export default function NavBar() {
               aria-label="Abrir menu"
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((v) => !v)}
-              className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 hover:bg-gray-100 focus:outline-none"
+              className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 focus:outline-none"
             >
               {/* Hamburger icon */}
               <svg
@@ -112,15 +112,15 @@ export default function NavBar() {
       </div>
 
       {/* Mobile menu panel */}
-      <div className={`sm:hidden ${menuOpen ? 'block' : 'hidden'} border-t border-gray-200`}
+      <div className={`sm:hidden ${menuOpen ? 'block' : 'hidden'} border-t border-gray-200 dark:border-gray-600`}
         role="dialog"
         aria-modal="true"
       >
         <div className="space-y-1 px-4 pb-4 pt-2">
-          <a className="block rounded-md px-3 py-2 text-base font-medium text-mint-600 hover:bg-gray-100" href="/">Dashboard</a>
-          <a className="block rounded-md px-3 py-2 text-base font-medium text-mint-600 hover:bg-gray-100" href="/transactions">Transações</a>
-          <a className="block rounded-md px-3 py-2 text-base font-medium text-mint-600 hover:bg-gray-100" href="/settings">Configurações</a>
-          <div onClick={() => signOut()} className="block rounded-md px-3 py-2 text-base font-medium text-red-500 hover:bg-gray-100">Sair</div>
+          <a className="block rounded-md px-3 py-2 text-base font-medium text-mint-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800" href="/">Dashboard</a>
+          <a className="block rounded-md px-3 py-2 text-base font-medium text-mint-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800" href="/transactions">Transações</a>
+          <a className="block rounded-md px-3 py-2 text-base font-medium text-mint-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800" href="/settings">Configurações</a>
+          <div onClick={() => signOut()} className="block rounded-md px-3 py-2 text-base font-medium text-red-500 hover:bg-gray-100 dark:hover:bg-gray-800">Sair</div>
         </div>
       </div>
     </nav>
