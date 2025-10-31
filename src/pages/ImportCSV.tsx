@@ -165,9 +165,8 @@ export default function ImportCSV() {
                     </thead>
                     <tbody>
                       {[
-                        ["Supermercado", "-150.30", "2025-01-20", "Alimentação", "Pago"],
-                        ["Salário", "3000.00", "2025-01-15", "Renda", "Pago"],
-                        ["Combustível", "-80.00", "2025-01-18", "Transporte", "Pendente"]
+                        ["Venda de produto de beleza", "150.30", "2025-01-20", "Venda", "Recebido"],
+                        ["Custo de marketing", "-300.00", "2025-01-15", "Marketing", "Pago"],
                       ].map(([desc, val, date, cat, stat], i) => (
                         <tr key={i} className="border-b border-green-100 dark:border-green-800">
                           <td className="px-2 py-2 text-green-800 dark:text-green-100">{desc}</td>

@@ -20,7 +20,7 @@ export default function Login() {
 
     setLoading(true)
     try {
-      await signIn(form.email, form.password)
+      await signIn(form.email, form.password,)
       navigate("/", { replace: true })
     } catch (err: any) {
       const message = err?.error_description || err?.message || "Credenciais inválidas"
