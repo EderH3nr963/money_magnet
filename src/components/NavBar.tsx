@@ -120,7 +120,7 @@ export default function NavBar() {
           <a className="block rounded-md px-3 py-2 text-base font-medium text-mint-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800" href="/">Dashboard</a>
           <a className="block rounded-md px-3 py-2 text-base font-medium text-mint-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800" href="/transactions">Transações</a>
           <a className="block rounded-md px-3 py-2 text-base font-medium text-mint-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800" href="/settings">Configurações</a>
-          <div onClick={() => { console.log("rodou"); signOut() }} className="block rounded-md px-3 py-2 text-base font-medium text-red-500 hover:bg-gray-100 dark:hover:bg-gray-800">Sair</div>
+          <div onClick={() => { signOut() }} className="block rounded-md px-3 py-2 text-base font-medium text-red-500 hover:bg-gray-100 dark:hover:bg-gray-800">Sair</div>
         </div>
       </div>
     </nav>
