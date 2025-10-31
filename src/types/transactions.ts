@@ -5,6 +5,7 @@ export interface Category {
   name: string;
   color: string;
   type: CategoryType;
+  icon?: string;
 }
 
 export interface Transaction {

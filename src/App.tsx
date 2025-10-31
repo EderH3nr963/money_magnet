@@ -12,6 +12,7 @@ import TransactionsPage from './pages/Transactions'
 import ImportCSV from './pages/ImportCSV'
 import EditTransaction from './pages/EditTransaction'
 import ThemeProvider, { useTheme } from './context/ThemeContext'
+import Categories from './pages/categories'
 
 function PrivateRoute({ children }: { children: ReactNode }) {
   const { user, loading } = useAuth();
@@ -36,6 +37,7 @@ function RoutesReact() {
         <Route path="/edit-profile" element={<PrivateRoute><EditPerfil /></PrivateRoute>} />
         <Route path="/transactions" element={<PrivateRoute><TransactionsPage /></PrivateRoute>} />
         <Route path="/import-csv" element={<PrivateRoute><ImportCSV /></PrivateRoute>} />
+        <Route path="/categories" element={<PrivateRoute><Categories /></PrivateRoute>} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/update-password" element={<UpdatePassword />} />

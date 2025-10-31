@@ -37,6 +37,9 @@ export default function NavBar() {
                 <a href="/transactions" className="duration-300 text-mint-500 group-hover:text-purple-500 ">Transações</a>
               </li>
               <li className="flex items-center hover:bg-gray-100 px-3 py-1 rounded-lg hover:cursor-pointer group dark:hover:bg-gray-800 dark:text-gray-100">
+                <a href="/categories">Categorias</a>
+              </li>
+              <li className="flex items-center hover:bg-gray-100 px-3 py-1 rounded-lg hover:cursor-pointer group dark:hover:bg-gray-800 dark:text-gray-100">
                 <a href="/settings">
                   <Settings className=" text-gray-600 group-hover:text-purple-500 hover:cursor-pointer duration-300 dark:text-gray-200" />
                 </a>
