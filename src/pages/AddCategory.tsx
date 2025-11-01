@@ -31,7 +31,6 @@ export default function AddCategory() {
       setIsError(false);
       setTimeout(() => navigate("/categories", { replace: true }), 2000);
     } catch(err) {
-      console.log(err)
       setMessage("Erro ao adicionar a categoria.");
       setIsError(true);
     } finally {
