@@ -8,6 +8,8 @@ export interface Category {
   icon?: string;
 }
 
+export type CategoryWithoutId = Omit<Category, "id">;
+
 export interface Transaction {
   id: number;
   date: string; // ISO string

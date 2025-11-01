@@ -66,7 +66,7 @@ export interface CurrentMetrics {
 export function calculateCurrentMetrics(transactions: Transaction[]): CurrentMetrics {
   const currentMonth = new Date().getMonth(); // Junho
   const previousMonth = currentMonth === 0 ? 5 : currentMonth - 1; // Maio
-
+  
   const currentTransactions = transactions.filter(t => new Date(t.date).getMonth() === currentMonth && new Date(t.date).getFullYear() === CURRENT_YEAR);
   const previousTransactions = transactions.filter(t => new Date(t.date).getMonth() === previousMonth && new Date(t.date).getFullYear() === CURRENT_YEAR); 
 

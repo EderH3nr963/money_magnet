@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Footer from "../components/Fotter";
 import NavBar from "../components/NavBar";
 import type { Category } from "../types/transactions";
-import { Edit, Trash } from "react-feather";
+import { Edit, PlusCircle, Trash } from "react-feather";
 import ModalConfirmDeleteTransaction from "../components/ModalConfirmDeleteTransaction";
 import BoxMessage from "../components/BoxMessage";
 import { useNavigate } from "react-router";
@@ -117,14 +117,14 @@ export default function Categories() {
     <>
       <NavBar />
       <main className="min-h-screen flex flex-col items-center p-4">
-        <section className="mt-10 mb-6 w-full max-w-5xl">
+        <section className="mt-10 mb-6 w-full max-w-4xl">
           <h1 className="text-3xl font-semibold mb-4 dark:text-gray-200">Categorias de Transação</h1>
 
           <div className="overflow-x-auto w-full bg-white dark:bg-gray-800 rounded-xl shadow-sm">
             <table className="min-w-full">
               <thead className="bg-gray-100 dark:bg-gray-700 sticky top-0 rounded-xl">
                 <tr>
-                  {["Nome", "Tipo", "Cor", "Icon", "Opções"].map(header => (
+                  {["Nome", "Tipo", "Cor", "Opções"].map(header => (
                     <th
                       key={header}
                       className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
@@ -142,14 +142,11 @@ export default function Categories() {
                     </td>
                     <td className="px-4 py-3 text-sm text-gray-900 dark:text-gray-200">{tx.type}</td>
                     <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-200">
-                      <div className={`py-2 px-2`} style={{ backgroundColor: tx.color}} />
-                    </td>
-                    <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-200">
-                      {tx.icon}
+                      <div className={`py-2 px-2`} style={{ backgroundColor: tx.color }} />
                     </td>
                     <td className="px-4 py-3 text-sm">
                       <div className="flex items-center space-x-2">
-                        <button onClick={() => navigate(`/edit-transaction/${tx.id}`)} className="text-blue-600 hover:cursor-pointer hover:text-white hover:bg-blue-600 rounded-md p-1 duration-200 hover:scale-105">
+                        <button onClick={() => navigate(`/category/edit/${tx.id}`)} className="text-blue-600 hover:cursor-pointer hover:text-white hover:bg-blue-600 rounded-md p-1 duration-200 hover:scale-105">
                           <Edit className="h-5 w-5" />
                         </button>
                         <button
@@ -187,6 +184,11 @@ export default function Categories() {
 
         {/*  Mensagens de feedback */}
         {message && <BoxMessage message={message} error={isError} />}
+
+        <a href="/category/add" className="fixed bottom-10 right-10 bg-purple-600 px-5 py-3 rounded-2xl text-white flex flex-row items-center hover:transform hover:scale-105 duration-300 hover:cursor-pointer">
+          <PlusCircle className="w-5 h-5 lg:mr-2" />
+          <p className="not-lg:hidden">Adicinar Categoria</p>
+        </a>
       </main>
       <Footer />
     </>

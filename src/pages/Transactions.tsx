@@ -164,7 +164,7 @@ export default function TransactionsPage() {
                     </td>
                     <td className="px-4 py-3 text-sm">
                       <div className="flex items-center space-x-2">
-                        <button onClick={() => navigate(`/edit-transaction/${tx.id}`)} className="text-blue-600 hover:cursor-pointer hover:text-white hover:bg-blue-600 rounded-md p-1 duration-200 hover:scale-105">
+                        <button onClick={() => navigate(`/transaction/edit/${tx.id}`)} className="text-blue-600 hover:cursor-pointer hover:text-white hover:bg-blue-600 rounded-md p-1 duration-200 hover:scale-105">
                           <Edit className="h-5 w-5" />
                         </button>
                         <button
