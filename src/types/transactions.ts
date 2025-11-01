@@ -5,7 +5,10 @@ export interface Category {
   name: string;
   color: string;
   type: CategoryType;
+  icon?: string;
 }
+
+export type CategoryWithoutId = Omit<Category, "id">;
 
 export interface Transaction {
   id: number;

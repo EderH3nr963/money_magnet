@@ -12,6 +12,9 @@ import TransactionsPage from './pages/Transactions'
 import ImportCSV from './pages/ImportCSV'
 import EditTransaction from './pages/EditTransaction'
 import ThemeProvider, { useTheme } from './context/ThemeContext'
+import Categories from './pages/Categories'
+import EditCategory from './pages/EditCategory'
+import AddCategory from './pages/AddCategory'
 
 function PrivateRoute({ children }: { children: ReactNode }) {
   const { user, loading } = useAuth();
@@ -31,11 +34,14 @@ function RoutesReact() {
   return (
       <Routes>
         <Route path="/" element={<PrivateRoute><HomePage /></PrivateRoute>} />
-        <Route path="/edit-transaction/:id" element={<PrivateRoute><EditTransaction /></PrivateRoute>} />
+        <Route path="/transaction/edit/:id" element={<PrivateRoute><EditTransaction /></PrivateRoute>} />
+        <Route path="/category/edit/:id" element={<PrivateRoute><EditCategory /></PrivateRoute>} />
         <Route path="/settings" element={<PrivateRoute><Settings /></PrivateRoute>} />
-        <Route path="/edit-profile" element={<PrivateRoute><EditPerfil /></PrivateRoute>} />
+        <Route path="/profile/edit" element={<PrivateRoute><EditPerfil /></PrivateRoute>} />
         <Route path="/transactions" element={<PrivateRoute><TransactionsPage /></PrivateRoute>} />
         <Route path="/import-csv" element={<PrivateRoute><ImportCSV /></PrivateRoute>} />
+        <Route path="/categories" element={<PrivateRoute><Categories /></PrivateRoute>} />
+        <Route path="/category/add" element={<PrivateRoute><AddCategory /></PrivateRoute>} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/update-password" element={<UpdatePassword />} />
